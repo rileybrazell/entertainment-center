@@ -23,6 +23,7 @@ class Movie(Video):
 		+ '/videos?api_key=' + tmdb_api + '&language=en-US')
 		parsed_video = r_video.json()
 
+		# Creates variables for fresh_tomatoes.py to use while making webpage
 		self.title = parsed_details['title']
 		self.plot = parsed_details['overview']
 		self.poster_image_url = 'http://image.tmdb.org/t/p/w1280' + parsed_details['poster_path']

@@ -6,11 +6,12 @@ on the movie poster a pop-up frame will play the movie's trailer from YouTube.
 
 Getting Started
 ---------------
-# Requires requests module, not found in Python Standard Library
-## Run 'pip install requests' from the command line before starting
+**Requires requests module, not found in Python Standard Library
+Run 'pip install requests' from the command line before starting**
 
 Add any new movies to entertainment_center.py using the following convention:
 name_of_movie = media.Movie('TMDB_ID_NUMBER')
+
 ex: moana = media.Movie('277834')
 
 ID numbers can be found on TheMovieDB.org as part of the URL for the movie
