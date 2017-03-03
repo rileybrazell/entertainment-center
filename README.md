@@ -20,11 +20,11 @@ ID numbers can be found on TheMovieDB.org as part of the URL for the movie
 
 Files
 ------
-entertainment_center.py: Holds list of movies, packages in a list, and sends
+*  `entertainment_center.py`: Holds list of movies, packages in a list, and sends
   to fresh_tomatoes.py to build fresh_tomatoes.html
-fresh_tomatoes.py: Builds fresh_tomatoes.html from information in
+*  `fresh_tomatoes.py`: Builds fresh_tomatoes.html from information in
   entertainment_center.py  
-media.py: Contains classes for Video and Movies objects, requests information
+*  `media.py`: Contains classes for Video and Movies objects, requests information
   from TheMovieDB to use in fresh_tomatoes.py
 
 Credit
