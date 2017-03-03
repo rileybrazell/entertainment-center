@@ -1,13 +1,32 @@
 # Media Center site
 
 Builds a page to be opened in a browser that displays information on movies.
-Includes the name, rating, and movie poster for the movie, if the user clicks
+Includes the name and movie poster for the movie, if the user clicks
 on the movie poster a pop-up frame will play the movie's trailer from YouTube.
 
 Getting Started
 ---------------
-Add any movies you wish to the list in entertainment_center.py, make sure to
-follow the constructor pattern. Run "python entertainment_center.py" from the
-same folder to create and open an HTML file showcasing all the movies you added.
-If you add any new movies to entertainment_center.py run fresh_tomatoes.py again
-to remake the HTML file.
+**Requires requests module, not found in Python Standard Library**
+
+Run `pip install requests` from the terminal before starting
+
+Add any new movies to entertainment_center.py using the following convention:
+    
+    moana = media.Movie('277834')
+
+ID numbers can be found on TheMovieDB.org as part of the URL for the movie
+
+    themoviedb.org/movie/**277834**-moana
+
+Files
+------
+*  `entertainment_center.py`: Holds list of movies, packages in a list, and sends
+  to fresh_tomatoes.py to build fresh_tomatoes.html
+*  `fresh_tomatoes.py`: Builds fresh_tomatoes.html from information in
+  entertainment_center.py  
+*  `media.py`: Contains classes for Video and Movies objects, requests information
+  from TheMovieDB to use in fresh_tomatoes.py
+
+Credit
+------
+Requests module: https://github.com/kennethreitz/requests

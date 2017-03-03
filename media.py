@@ -1,25 +1,30 @@
-import webbrowser
+# requests module: https://github.com/kennethreitz/requests
+import requests
 
+tmdb_api = '361bdc203344014cb98d70f50cdceca1'
 
-# Creates a Video object to be accessed by fresh_tomatoes.py to build webpage
+# Creates a Video object containing an id number for an entry on TheMovieDB
 class Video():
-	# List of valid ratings, can be used for parental controls
-	VALID_RATINGS = ["G", "PG", "PG-13", "R"]
-
-	def __init__(self, rating, title, year):
-		self.rating = rating
-		self.title = title
-		self.year = year
+	def __init__(self, tmdb_id):
+		self.tmdb_id = tmdb_id
 
 class Movie(Video):
-	# Inherits Video class with unique variables for plot, poster, and trailer
-	def __init__(self, rating, title, year, movie_plot, poster_image,
-				trailer_youtube):
-		Video.__init__(self, rating, title, year)
-		self.movie_plot = movie_plot
-		self.poster_image_url = poster_image
-		self.trailer_youtube_url = trailer_youtube
+	# Inherits Video class, requests information on specific id number
+	# Only for movies on TheMovieDB
+	def __init__(self, tmdb_id):
+		Video.__init__(self, tmdb_id)
+		# Uses requests module to get information on movie in JSON object
+		r_details = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id + '?api_key=' + tmdb_api + '&language=en-US')
+		# Parses JSON object to make values accessible to class
+		parsed_details = r_details.json()
 
-	# Opens a link to the movie's trailer on youtube, used for pop-up frame
-	def show_trailer(self):
-		webbrowser.open(self.trailer_youtube_url)
+		# Requests YouTube video ID for movie trailer
+		r_video = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id
+		+ '/videos?api_key=' + tmdb_api + '&language=en-US')
+		parsed_video = r_video.json()
+
+		# Creates variables for fresh_tomatoes.py to use while making webpage
+		self.title = parsed_details['title']
+		self.plot = parsed_details['overview']
+		self.poster_image_url = 'http://image.tmdb.org/t/p/w1280' + parsed_details['poster_path']
+		self.trailer_youtube_url = parsed_video['results'][0]['key']
